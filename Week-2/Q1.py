@@ -4,5 +4,5 @@ def reverse_digits(num):
         print(digit, end="")
         num = num // 10
 
-number = 12345
+number = int(input("Enter Number: "))
 reverse_digits(number)

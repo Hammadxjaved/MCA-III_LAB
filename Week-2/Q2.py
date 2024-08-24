@@ -5,5 +5,5 @@ def count_digits(num):
         count += 1
     return count
 
-number = 12345
+number =  int(input("Enter Number: "))
 print("Total number of digits:", count_digits(number))

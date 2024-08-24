@@ -13,6 +13,6 @@ def prime_numbers_in_range(start, end):
             primes.append(num)
     return primes
 
-start = 10
-end = 50
+start = int(input("Enter starting Number: "))
+end = int(input("Enter ending Number: "))
 print("Prime numbers between", start, "and", end, "are:", prime_numbers_in_range(start, end))

@@ -5,5 +5,5 @@ def sum_of_digits(num):
         num = num // 10
     return total
 
-number = 12345
+number = int(input("Enter Number: "))
 print("Sum of digits:", sum_of_digits(number))
