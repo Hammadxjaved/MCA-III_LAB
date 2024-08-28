@@ -4,5 +4,5 @@ def factorial(num):
         result *= i
     return result
 
-number = 5
+number = int(input("Enter Number: "))
 print("Factorial of", number, "is", factorial(number))
