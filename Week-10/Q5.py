@@ -17,4 +17,4 @@ def replace_max_word(file_path):
     with open('updated_file.txt', 'w') as file:
         file.write(updated_content)
 
-replace_max_word('example.txt')
+replace_max_word('Week-10/example.txt')

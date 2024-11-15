@@ -1,16 +1,26 @@
-def separate_alphabets_and_numbers(input_string):
-    L1 = []  
-    L2 = []  
-    for char in input_string:
-        if char.isdigit(): 
-            L1.append(char)
-        elif char.isalpha():  
-            L2.append(char)
+import csv
 
-    return L1, L2
+departments = {}
+with open('Week-7/department.csv', mode='r') as file:
+    reader = csv.reader(file)
+    next(reader)  # Skip header
+    for row in reader:
+        DID, DName, DLocation = row
+        departments[DID] = {'DName': DName, 'DLocation': DLocation, 'TotalSalary': 0, 'EmployeeCount': 0}
 
-input_string = input("Enter a string containing alphabets and numbers: ")
-numbers_list, alphabets_list = separate_alphabets_and_numbers(input_string)
+with open('Week-7/employees.csv', mode='r') as file:
+    reader = csv.reader(file)
+    next(reader)  # Skip header
+    for row in reader:
+        Name, EId, Salary, DID = row
+        Salary = float(Salary)
+        if DID in departments:
+            departments[DID]['TotalSalary'] += Salary
+            departments[DID]['EmployeeCount'] += 1
 
-print("List of numbers (L1):", numbers_list)
-print("List of alphabets (L2):", alphabets_list)
+for DID, data in departments.items():
+    if data['EmployeeCount'] > 0:
+        average_salary = data['TotalSalary'] / data['EmployeeCount']
+        print(f"Department: {data['DName']}, Location: {data['DLocation']}, Average Salary: {average_salary:.2f}")
+    else:
+        print(f"Department: {data['DName']}, Location: {data['DLocation']}, Average Salary: N/A")

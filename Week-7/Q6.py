@@ -1,29 +1,26 @@
-def find_max_vowel_instances(file_path):
-    vowel_counts = {'a': 0, 'e': 0, 'i': 0, 'o': 0, 'u': 0}
+def read_file(file_path):
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+    return lines
 
-    try:
-        with open(file_path, 'r') as file:
-            content = file.read().lower()  
+def write_file(file_path, lines):
+    with open(file_path, 'w') as file:
+        file.writelines(lines)
 
-            for char in content:
-                if char in vowel_counts:
-                    vowel_counts[char] += 1
+def swap_lines(file1, file2):
+    lines1 = read_file(file1)
+    lines2 = read_file(file2)
+    
+    middle_index = len(lines1) // 2
+    
+    last_index = len(lines2) - 1
+    
+    lines1[middle_index], lines2[last_index] = lines2[last_index], lines1[middle_index]
+    
+    write_file(file1, lines1)
+    write_file(file2, lines2)
+    print("Content swapped Successfully")
 
-        max_vowel = max(vowel_counts, key=vowel_counts.get)
-        max_count = vowel_counts[max_vowel]
-
-        return max_vowel, max_count
-
-    except FileNotFoundError:
-        return "File not found. Please check the file path." 
-    except Exception as e:
-        return f"An error occurred: {e}"
-
-file_path = input("Enter the path of the file: ")
-result = find_max_vowel_instances(file_path)
-
-if isinstance(result, tuple):
-    max_vowel, max_count = result
-    print(f"The vowel with the maximum instances is '{max_vowel}' with {max_count} occurrences.")
-else:
-    print(result)
+file1 = 'Week-7/file1.txt'
+file2 = 'Week-7/file2.txt'
+swap_lines(file1, file2)
